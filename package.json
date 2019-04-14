@@ -1,0 +1,27 @@
+{
+  "name": "web-scrapper",
+  "version": "1.0.0",
+  "description": "Utilizing axios as well as Cherrios we are scraping data from an existing website.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/notmattcaro/Web-scrapper.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/notmattcaro/Web-scrapper/issues"
+  },
+  "homepage": "https://github.com/notmattcaro/Web-scrapper#readme",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "cheerio": "^1.0.0-rc.3",
+    "express": "^4.16.4",
+    "materialize-css": "^1.0.0-rc.2",
+    "mongoose": "^5.5.0",
+    "morgan": "^1.9.1"
+  }
+}

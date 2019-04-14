@@ -1,0 +1,71 @@
+/* ===== OVERALL CONTAINER UNDER BODY ===== */
+    div#general-container-modifier.row {
+        /* margin-top: 10px; */
+    }
+/* ===== NAVBAR ===== */
+    .brand-logo {
+        margin-left: 10px;
+    }
+/* ===== WEB SCRAPER INTRO LEFT ===== */
+    #web-scraper-intro {
+        padding: 0px;
+        margin: 0px;
+        background-color: whitesmoke;
+        height: 150vh;
+    }
+    @media (max-width: 992px) {
+        #web-scraper-intro {
+            padding: 0px;
+            margin: 0px;
+            background-color: whitesmoke;
+            height: 30vh;
+        }
+    }
+    #web-intro-buttons {
+        margin-top: 20px;
+    }
+    #scrape-articles {
+        border-radius: 20px;
+        margin-right: 15px;
+    }
+    #clear-articles {
+        border-radius: 20px;
+        margin-left: 15px;
+    }
+/* ===== WEB SCRAPER CONTENT RIGHT ===== */
+    .web-scraper-content-dump {
+
+    }
+    .article-cards {
+        margin-bottom: 10px;
+    }
+    .card-action {
+        padding: 0px;
+        margin: 0px;
+    }
+    .card-header {
+        padding: 7px 0px 7px 7px;
+        margin: 0px;
+        font-size: 18px;
+    }
+    .card-paragraph-space {
+        padding: 12px !important;
+    }
+    .button-holder-padding {
+        padding: 0px 0px 10px 10px;
+    }
+    .button-save-articles {
+        border-radius: 40px;
+        padding-right: 10px;
+        padding-left: 10px;
+    }
+/* ===== ===== */
+/* ===== GENERAL TAGS ===== */
+html {
+    margin: 0px;
+    padding: 0px;
+}
+body {
+    margin: 0px;
+    padding: 0px;
+}
