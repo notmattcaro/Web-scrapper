@@ -28,51 +28,69 @@ app.use(express.json());
 app.use(express.static("public"));
 
 // Connect to the Mongo DB
-mongoose.connect("mongodb://localhost/webScrapperPoulator", { useNewUrlParser: true });
+mongoose.connect("mongodb://localhost/unit18Populater", { useNewUrlParser: true });
 
 // ================= ROUTE SETUP ======================
 
 // Scrape Route
 app.get("/scrape", function(req, res) {
-    // 
-    axios.get("https://medium.com/").then(function(response) {
+
+    axios.get("https://www.nytimes.com/section/technology").then(function(response) {
         var $ = cheerio.load(response.data);
-        // console.log('====== Cheerios "$" =========== ');
-        // console.log($); // check what axios returns
-        // console.log('====== Cheerios "$" End =========== ');
 
         // LINE 46 MIGHT HAVE AN ERROR && SAME WITH THE CHILDREN 
-        $("article.extremePostPreview.u-marginBottom48.uiScale.uiScale-ui--small.uiScale-caption--small").each(function(i, element) {
-            var result = {}; 
+        var result = {}; 
+        // references 'article' element with its associated classes
+        $("div.css-4jyr1y").each(function(i, element) {
             
             //saves result.image/.header/.summary to the result object
             result.image = $(this)
                 //grabs the 'a' 'href' within the 'div'
-                .children("div.extremePostPreview-image.u-flex0 a")
-                .attr("href");
+                .children("a div.css-79elbk figure.css-196wev6.toneNews div.css-79elbk img.css-11cwn6f")
+                // .children("a.u-block.u-backgroundCover.u-sizeFull")
+                .attr("src"); //holds href value
             result.header = $(this)
                 //grabs the 'h2' text within the 'a' within the 'div'
-                .children("div.extremePostPreview-post.u-minWidth0.u-flex1.u-marginRight24.u-textAlignLeft.js-trackPostPresentation a.ds-link.ds-link--stylePointer.u-overflowHidden.u-flex0.u-width100pct h2.ui-h2.ui-xs-h4.ui-clamp3")
-                .text();
+                .children("a div.css-79elbk h2.css-1dq8tca.e1xfvim30")
+                // .children("a.ds-link.ds-link--stylePointer.u-overflowHidden.u-flex0.uwidth100pct")
+                // .children("h2.ui-h2.ui-xs-h4.ui-clamp3")
+                .text(); //gets header text
             result.summary = $(this) 
                 //grabs the 'div' text wtihin the 'a'
-                .children("a.ds-link.ds-link--stylePointer.u-width100pct div.ui-summary.ui-clamp2.u-marginTop2")
-                .text();
+                .children("a p.css-1echdzn e1xfvim31")
+                // .children("div.ui-summary.ui-clamp2.u-marginTop2")
+                .text();//gets summary text
 
             //references the Article model and inserts the result we just created
             db.Article.create(result)
-                .then((dbArticle) => {
+                .then(function(dbArticle) {
                     console.log(dbArticle);
+                
                 })
-                .catch((err) => {
+                .catch(function(err) {
                     console.log(err);
                 });
+
             console.log("===== Result =====");
             console.log(result);
             console.log("===== Result =====");
+
+            result = $(this).contents().length
+            console.log(result);
         });
-        res.send("Scraping Medium is complete ")
+        res.send("Scraping NYT is complete ")
     });
+});
+
+// Articles Route
+app.get("/articles", function(req, res) {
+    db.Article.find({}) // finds all articles in db
+        .then((dbArticle) => {
+            res.json(dbArticle); //returns a promise of 
+        })
+        .catch((err) => {
+            res.json(err);
+        });         
 });
 
 // ================ PORT STARTER =====================

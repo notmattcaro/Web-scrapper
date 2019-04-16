@@ -63,6 +63,9 @@
     }
 /* ===== ===== */
 /* ===== GENERAL TAGS ===== */
+.padding-top {
+    padding-top: 20px;
+}
 html {
     margin: 0px;
     padding: 0px;

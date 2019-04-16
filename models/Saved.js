@@ -2,7 +2,7 @@ var mongoose = require("mongoose");
 //reference to our Schema constructor
 var Schema = mongoose.Schema;
 
-var articlesYoSchema = new Schema({
+var savedSchema = new Schema({
     image: {
         type: String,
         required: true
@@ -17,6 +17,6 @@ var articlesYoSchema = new Schema({
     }
 });
 
-var Article = mongoose.model("Article", articlesYoSchema);
+var Saved = mongoose.model("Saved", savedSchema);
 
-module.exports = Article;
+module.exports = Saved;

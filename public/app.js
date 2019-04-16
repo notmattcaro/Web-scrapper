@@ -1,8 +1,24 @@
-// $.getJson("/r");
+// needs to happen because the page is asynchronous, and cannot be nested in a button
+$.getJSON("/articles", function(data) {
+    console.log("========== DATA HERE ==========");
+    console.log(data);
+    console.log("========== DATA HERE ==========");
+});
 
 $(document).ready( function(event) {
 
-// ====== TEST ARRAY OF OBJECTS =====
+// ====== TEST DATA PULL BUTTON ======
+    $("#data-pull-test").on("click", (event) => {
+        event.preventDefault();
+        $.getJSON("/articles", function(data) {
+            console.log("========== DATA HERE ==========");
+            console.log(data);
+            console.log("========== DATA HERE ==========");
+        });
+    });
+// ====== TEST DATA PULL BUTTON - END ======
+
+// ====== TEST ARRAY OF OBJECTS ======
         let scrapeArticlesArray = function(image, header, summary) {
             this.image = image;
             this.header = header;
